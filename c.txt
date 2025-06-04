@@ -12,12 +12,11 @@ abbrevs:
     for => N
 
 e.g. bsearch
-I bs(I*x,I t,I l,I h){$$(l>h,R -1)I m=(l+h)/2;R x[m]==t?m:x[m]>t?bs(x,t,l,m-1):bs(x,t,m+1,h);}
-I bs(I*x,I t,I l,I h){W(l<=h,I m=(l+h)/2;$$(x[m]==t,R m)$(x[m]>t,h=m-1){l=m+1;})R -1;}
+I bs(I*x,I t,I l,I h){$$(l>h,R -1)I m=(l+h)/2;R x[m]==t?m:x[m]>t?bs(x,t,l,m-1):bs(x,t,m+1,h);} /recursive
+I bs(I*x,I t,I l,I h){W(l<=h,I m=(l+h)/2;$$(x[m]==t,R m)$(x[m]>t,h=m-1){l=m+1;})R -1;} /non-recursive
 
-nekoarch don't use /usr/lib/ or /usr/include/.
-when i have to use an operating system, i
-write my own syscall wrappers:
+i don't use /usr/lib/ or /usr/include/, they just make software harder to understand.
+when i have to use an operating system, i write my own syscall wrappers:
 
 x86-64:
     #define O(f,i) i3 __attribute((naked))f(long, ...){asm("mov %rcx,%r10;mov $"#i",%rax;syscall;ret");}
@@ -28,9 +27,18 @@ rv:
     #define O(f,i) i3 __attribute((naked)) f(long, ...){asm("li a7,"#i";ecall;ret");}
     ...
 
+simd:
+    simds are good, especially with builtins.
 
-ideas:
-    01. good dsl > good general pl
-    02. big problem can be divided into small subproblems
-    03. only short programs can be proven correct
-    04. bloatwares are bad, really really bad
+    avx2:
+         #define bu(f) __builtin_##f
+         #define o(f) bu(ia32_##f##256) /o(pblendvb)(a,b,v)
+
+thoughts:
+    0. good dsl > good general pl
+    1. big problem can be divided into small subproblems
+    2. only short programs have the hope to be proven correct
+    3. bloatwares are bad when you try to manage complexity
+
+--
+mtx

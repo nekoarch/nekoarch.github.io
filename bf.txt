@@ -1,5 +1,5 @@
 neko/bf is a:
-    small (<15kb) &
+    small (6|12kb) &
     fast (abuse L1 cache)
     brainf**k interpreter
 
@@ -7,17 +7,16 @@ get:
     github.com/nekoarch/bf
 
 dep:
-    linux syscall (read,write,open,close)
-    a proper c compiler: gcc/clang
-    c lib (glibc,musl) is not required
+    6|12kb, not dynamic
+    only x86-64 syscall needed
 
 lang
     ops: +- >< ,. []  ?     !
                      man  reset
 
 build:
-    make
-    smallest-size: upx --best m
+    do: make
+    best size: make mu
 
 test:
     ./m ./e/e.b   # output e
@@ -34,6 +33,9 @@ src
         -> rp() => repl
         -> rd() => read
         -> main()
+
+authors:
+    tttiw & mtx
 
 license:
     no license, uayor
