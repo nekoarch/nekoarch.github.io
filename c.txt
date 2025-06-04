@@ -1,0 +1,36 @@
+c can be very simple.
+
+i use c with 2 types: int   && float
+                      8/32/64  32/64
+                      C I  ..  F  E
+
+abbrevs:
+    return   => R
+    while    => W
+    if..else => $
+    if a do b => $$
+    for => N
+
+e.g. bsearch
+I bs(I*x,I t,I l,I h){$$(l>h,R -1)I m=(l+h)/2;R x[m]==t?m:x[m]>t?bs(x,t,l,m-1):bs(x,t,m+1,h);}
+I bs(I*x,I t,I l,I h){W(l<=h,I m=(l+h)/2;$$(x[m]==t,R m)$(x[m]>t,h=m-1){l=m+1;})R -1;}
+
+nekoarch don't use /usr/lib/ or /usr/include/.
+when i have to use an operating system, i
+write my own syscall wrappers:
+
+x86-64:
+    #define O(f,i) i3 __attribute((naked))f(long, ...){asm("mov %rcx,%r10;mov $"#i",%rax;syscall;ret");}
+    //write/read stat/trunc open/close map/unmap
+    O(_w,0)O(w_,1)O(_n,4)O(_n,5)O(_d,3)O(d_,2)O(m_,9)O(_m,11)
+
+rv:
+    #define O(f,i) i3 __attribute((naked)) f(long, ...){asm("li a7,"#i";ecall;ret");}
+    ...
+
+
+ideas:
+    01. good dsl > good general pl
+    02. big problem can be divided into small subproblems
+    03. only short programs can be proven correct
+    04. bloatwares are bad, really really bad

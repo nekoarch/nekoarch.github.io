@@ -1,0 +1,39 @@
+neko/bf is a:
+    small (<15kb) &
+    fast (abuse L1 cache)
+    brainf**k interpreter
+
+get:
+    github.com/nekoarch/bf
+
+dep:
+    linux syscall (read,write,open,close)
+    a proper c compiler: gcc/clang
+    c lib (glibc,musl) is not required
+
+lang
+    ops: +- >< ,. []  ?     !
+                     man  reset
+
+build:
+    make
+    smallest-size: upx --best m
+
+test:
+    ./m ./e/e.b   # output e
+        ./e/hw.b  # Hello, World!
+
+usage:
+    ./m       # repl
+    ./m file  # eval file
+
+src
+    _.h => abbrevs
+    m.c -> ev() => eval
+        -> rs() => reset
+        -> rp() => repl
+        -> rd() => read
+        -> main()
+
+license:
+    no license, uayor
