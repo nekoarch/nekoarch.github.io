@@ -1,105 +1,124 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>u/wasm</title>
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: monospace;
-      display: flex;
-      flex-direction: column;
-    }
-    #header {
-      padding: 0.5em;
-      background: #222;
-      color: #fff;
-    }
-    #container {
-      display: flex;
-      flex: 1;
-      overflow: hidden;
-    }
-    #input-container,
-    #output-container {
-      flex: 1;
-      box-sizing: border-box;
-      padding: 1em;
-    }
-    #input-container {
-      border-right: 1px solid #ccc;
-      display: flex;
-      flex-direction: column;
-    }
-    #input {
-      flex: 1;
-      width: 100%;
-      resize: none;
-      font-family: monospace;
-    }
-    #run {
-      margin-top: 0.5em;
-      height: 2em;
-      font-size: 1em;
-    }
-    #output-container {
-      background: #f8f8f1;
-    }
-    #output {
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      white-space: pre-wrap;
-    }
-    footer {
-      background: #eee;
-      padding: 0.5em;
-      text-align: center;
-      font-size: 0.9em;
-      border-top: 1px solid #ccc;
-    }
-  </style>
+    <meta charset="utf-8">
+    <title>u/wasm</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: monospace;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #header {
+            padding: 0.5em;
+            background: #222;
+            color: #fff;
+        }
+
+        #container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        #input-container,
+        #output-container {
+            flex: 1;
+            box-sizing: border-box;
+            padding: 1em;
+        }
+
+        #input-container {
+            border-right: 1px solid #ccc;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #input {
+            flex: 1;
+            width: 100%;
+            resize: none;
+            font-family: monospace;
+            box-sizing: border-box;
+            padding: 1em;
+        }
+
+        #run {
+            margin-top: 0.5em;
+            height: 2em;
+            font-size: 1em;
+        }
+
+        #output-container {
+            background: #f8f8f1;
+        }
+
+        #output {
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            white-space: pre-wrap;
+            box-sizing: border-box;
+            padding: 1em;
+        }
+
+        footer {
+            background: #eee;
+            padding: 0.5em;
+            text-align: center;
+            font-size: 0.9em;
+            border-top: 1px solid #ccc;
+        }
+    </style>
 </head>
 <body>
-  <div id="header">
+<div id="header">
     <strong>u/wasm</strong> (c) nekoarch Jun 6 10
-  </div>
-  <div id="container">
+</div>
+<div id="container">
     <div id="input-container">
-      <textarea id="input" placeholder="+ - * / sqrt cons car cdr quote(') atom eq define lambda defmacro if cond > < and or xor not"></textarea>
-      <button id="run">eval (ctrl+enter)</button>
+        <label for="input">input</label>
+        <textarea id="input"
+                  placeholder="+ - * / sqrt cons car cdr quote(') atom eq define lambda defmacro if cond > < and or xor not"></textarea>
+        <button id="run">eval (ctrl+enter)</button>
     </div>
     <div id="output-container">
-      <div id="output"></div>
+        <div id="output"></div>
     </div>
-  </div>
-  <footer>
+</div>
+<footer>
     root@nekoarch.cc • u/wasm firefox f(i)64 • last updated: 250610
-  </footer>
+</footer>
 
-  <script src="u.js"></script>
-  <script>
-  const init    = Module.cwrap('init_interpreter', null, []);
-  const evalExp = Module.cwrap('eval_expression', null, ['string']);
-  const getOut  = Module.cwrap('get_output',    'string', []);
+<script src="u.js"></script>
+<script>
+    // @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&dn=expat.txt Expat
 
-  Module.onRuntimeInitialized = init;
+    const init = Module.cwrap('init_interpreter', null, []);
+    const evalExp = Module.cwrap('eval_expression', null, ['string']);
+    const getOut = Module.cwrap('get_output', 'string', []);
 
-  function runCode() {
-    const code = document.getElementById('input').value;
-    evalExp(code);
-    document.getElementById('output').textContent = getOut();
-  }
+    Module.onRuntimeInitialized = init;
 
-  document.getElementById('run').addEventListener('click', runCode);
-  document.getElementById('input').addEventListener('keydown', e => {
-    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
-      e.preventDefault();
-      runCode();
+    function runCode() {
+        const code = document.getElementById('input').value;
+        evalExp(code);
+        document.getElementById('output').textContent = getOut();
     }
-  });
-  </script>
+
+    document.getElementById('run').addEventListener('click', runCode);
+    document.getElementById('input').addEventListener('keydown', e => {
+        if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+            e.preventDefault();
+            runCode();
+        }
+    });
+
+    // @license-end
+</script>
 </body>
 </html>
