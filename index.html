@@ -1,20 +1,32 @@
 <!DOCTYPE html>
-<html lang="">
-  <head>
-    <meta charset="utf-8">
-    <title>nekoarch</title>
-  </head>
-  <body>
-    <main>      
-      <p>projects:</p>
-      <a href="bf.txt">neko/bf</a>
-      <a href="u.txt">u/incunabulum</a>
-      <a href="./u/u.html">u/wasm</a>
-      <p>+ - < > , . [ ]</p>
-      <p>miscs:</p>
-      <a href="c.txt">c</a>
-      <br>
-      <p>about:<a href="mailto:root@nekoarch.cc">root@nekoarch.cc</a></p>
-    </main>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap"
+    rel="stylesheet">
+  <style>
+    pre{font-family:'Fira Code',monospace;font-size:1rem;line-height:1.5;}
+  </style>
+</head>
+<body>
+  <pre>
+
+    <b>nekoarch</b>
+
+    projects:
+      <a href="bf.txt">neko/bf</a> is a small & fast bf interpreter.
+      <a href="u.txt">u</a> is yet another lisp dialect.
+
+      $ ./u
+      &gt; (load './l/k.u)
+      &gt; pi ; 3.14159 (in math.k)
+      &gt; (map (lambda (x) (* x x)) '(1 2 3)) ; (1 4 9)
+      &gt; (unique '(1 2 2 3 3 3 4)) ; (1 2 3 4)
+      ..
+
+    contact: <a href="mailto:root@nekoarch.cc">root@nekoarch.cc</a>
+  </pre>
+</body>
 </html>

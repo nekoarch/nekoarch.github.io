@@ -1,41 +1,23 @@
-neko/bf is a:
-    small (6|12kb) &
-    fast (abuse L1 cache)
-    brainf**k interpreter
+neko/bf is a small and fast brainfuck interpreter.
+8 verbs, 2 system functions, 0 dependency.
 
-get:
-    github.com/nekoarch/bf
+Verb                    System
++ inc    , print        ? man
+- dec    . read         ! reset
+> rmov   [ loop start
+< lmov   ] loop end
 
-dep:
-    6|12kb, not dynamic
-    only x86-64 syscall needed
+source code at: github.com/nekoarch/bf
+$ git clone github.com/nekoarch/bf && make
+$ ./m ./e/e.b   # output e
+      ./e/hw.b  # Hello, World!
+$ ./m # repl
 
-lang
-    ops: +- >< ,. []  ?     !
-                     man  reset
+_.h => abbrevs
+m.c -> ev() => eval
+    -> rs() => reset
+    -> rp() => repl
+    -> rd() => read
 
-build:
-    do: make
-    best size: make mu
-
-test:
-    ./m ./e/e.b   # output e
-        ./e/hw.b  # Hello, World!
-
-usage:
-    ./m       # repl
-    ./m file  # eval file
-
-src
-    _.h => abbrevs
-    m.c -> ev() => eval
-        -> rs() => reset
-        -> rp() => repl
-        -> rd() => read
-        -> main()
-
-authors:
-    tttiw & mtx
-
-license:
-    no license, uayor
+this project is brought to you by mtx & tttiw
+no license, use at your own risk.
