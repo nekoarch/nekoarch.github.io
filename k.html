@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>neko/k</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #f8f9fb; --fg: #111; --muted: #555; }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font-family: 'Fira Code', monospace; font-size: 16px; line-height: 1.5; }
+  .container { max-width: 840px; margin: 0 auto; padding: 24px; }
+  h1 { text-align: center; font-weight: 400; font-size: 28px; margin: 8px 0 24px; color: var(--fg); }
+  details { margin: 18px 0; }
+  summary { cursor: pointer; font-weight: 400; color: var(--muted); letter-spacing: 0.2px; }
+  pre { margin: 8px 0 0; }
+  .man { border: 1px solid #000; padding: 16px; white-space: pre; line-height: 1.35; overflow: auto; display: inline-block; width: fit-content; max-width: 100%; font-size: 18px; background: #fff; color: #000; font-family: 'Fira Code', monospace; }
+  .text { padding: 16px; white-space: pre; line-height: 1.35; overflow: auto; display: inline-block; width: fit-content; max-width: 100%; font-size: 18px; font-family: 'Fira Code', monospace; }
+</style>
+</head>
+<body>
+<main class="container">
+
+<h1>neko/k</h1>
+
+<details>
+<summary>what</summary>
+<pre class="text">
+neko/k is an(other) implementation of the <a href="https://en.wikipedia.org/wiki/K_(programming_language)">K programming language</a>.
+
+it covers a subset of K6 dialect.
+</pre>
+</details>
+
+<details>
+<summary>who</summary>
+<pre class="text">
+neko/k is currently maintained by mitchell.
+send issues/patches to <a href="mailto:root@nekoarch.cc">root@nekoarch.cc</a>
+
++ thanks to:
+- <a href="https://en.wikipedia.org/wiki/Arthur_Whitney_(computer_scientist)">arthur whitney</a> for creating k language
+- <a href="https://github.com/tttiw">tttiw</a> for inspiring this project
+- <a href="https://k.nyc">shaktidb</a> for their great web design (k/nyi)
+</pre>
+</details>
+
+<details>
+<summary>run</summary>
+<pre class="text">
+requirement: <a href="https://llvm.org/">a decent C compiler</a>
+no license, use at your own risk (and pleasure).
+
+$ git clone <a href="https://github.com/nekoarch/k">git@github.com:nekoarch/k.git</a>
+$ cd k && ./make  
+$ ./k z.k
+
+done.
+</pre>
+</details>
+
+<details>
+<summary>man</summary>
+<pre class="man">
+neko/k 2025/10/14
+
+: assign f[1;2] funcall /comment ^nyi
+Verb      (monad)          Adverb
++ +        flip            f' each
+- -        negation     [x]f/ over   c/ join    i/ decode
+* *        first        [y]f\ scan   c\ split   i\ encode
+% div      sqrt
+& where    min/and        i/o                   System
+| reverse  max/or        ^0: r/w line           \     man
+< asc      less          ^1: r/w file           \v    var
+> desc     more          ^2: r/w csv            \t[n] time
+= group    equal                                \\    exit
+~ match    not            cf
+! key      enum           $[b;t;f] cond
+, concat   enlist
+^ ^cut     sort           class                Type
+# take     count          list (1;2.3;"c")     char " ab"
+_ drop     floor         ^dict [`a:1;`b:2]     int  2 3 2e9
+? ^find   ^uniq           func f:{[a;b]a+b}    flt  2 3.4 4.
+@ ^at     ^type           expr x:a+b
+
+exp log rand sin cos abs
+</pre>
+</details>
+
+<details>
+<summary>other</summary>
+<pre class="text">
+some other projects:
+
+- <a href="https://github.com/effbiae/k.edu/">k.edu</a> modified by kparc
+- <a href="https://codeberg.org/ngn/k">ngn/k</a>
+- <a href="https://github.com/cmh25/gk">charles hall's gk</a>
+</pre>
+</details>
+
+<summary>/:~</summary>
+</main>
+</body>
+</html>
